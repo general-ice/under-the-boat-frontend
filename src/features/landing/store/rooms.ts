@@ -55,7 +55,6 @@ const helpStore = createStoreObject({
 })
 
 // Event with source as argument and calling as clock clocking
-
 const sampleDataLoad = sample({
     source: helpStore,
     clock: getData.doneData

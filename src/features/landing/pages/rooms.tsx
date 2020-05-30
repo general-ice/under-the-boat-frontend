@@ -1,6 +1,7 @@
 import React from 'react'
 import {createComponent} from "effector-react";
 import {$rooms, startWatching, stopWatching, updateOnce} from "../store";
+import './rooms.sass'
 import {RoomCard} from '../molecules';
 
 const RoomsFallback = () => <div className="container justify-content-center text">
@@ -9,22 +10,25 @@ const RoomsFallback = () => <div className="container justify-content-center tex
 
 const RoomsList = createComponent($rooms, (props, rooms) => {
     return rooms.length ? <>
-        {rooms.map(({gamePort, maxPlayers, currentPlayers, title}, i) => <RoomCard
-            maxPlayers={maxPlayers}
-            currentPlayers={currentPlayers}
-            key={i}
-            title={title}
-            onClick={() => console.log(gamePort)}
-        />)}
+        <div className="rooms-box">
+            {rooms.map(({gamePort, maxPlayers, currentPlayers, title, description}, i) => <RoomCard
+                maxPlayers={maxPlayers}
+                currentPlayers={currentPlayers}
+                key={i}
+                description={description}
+                className="rooms-item"
+                title={title}
+                id={gamePort}
+                onClick={console.log}
+            />)}
+        </div>
     </> : <RoomsFallback/>
 })
 
 export const Rooms = React.memo(() => {
     React.useEffect(() => {
-        // Subscribe
         startWatching()
         return () => {
-            // unsubscribe
             stopWatching()
         }
     }, [])

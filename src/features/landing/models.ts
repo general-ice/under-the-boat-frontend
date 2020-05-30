@@ -1,6 +1,6 @@
 export interface IGameRoom {
     image?: string
-    gamePort: number
+    gamePort: string
     title?: string
     description?: string
     maxPlayers: number

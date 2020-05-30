@@ -4,14 +4,14 @@ import {IGameRoom} from "./models";
 
 const FakeRooms: IGameRoom[] = [
     {
-        gamePort: 8083,
+        gamePort: '8083',
         maxPlayers: 4,
         currentPlayers: 3,
         title: 'New games for looser',
         description: 'Come to me guys'
     },
     {
-        gamePort: 8082,
+        gamePort: '8082',
         maxPlayers: 6,
         currentPlayers: 2,
         title: 'Game game game',
@@ -19,6 +19,9 @@ const FakeRooms: IGameRoom[] = [
     }
 ]
 
-export const getRooms = () => Promise.resolve(EitherRight(FakeRooms).value)
+export const getRooms = () => {
+    console.log('get fake rooms request')
+    return Promise.resolve(EitherRight(FakeRooms).value)
+}
 
 // export const getRooms = () => simpleRequest('games/get-all')

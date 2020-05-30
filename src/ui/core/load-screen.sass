@@ -1,0 +1,27 @@
+.load-screen
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+
+  background-color: rgba(0, 0, 0, 0.12)
+
+  position: fixed
+
+  display: flex
+  justify-content: center
+  align-items: center
+
+.load-animation
+  font-size: 4em
+  font-weight: bold
+  animation: blinking infinite 2s
+
+@keyframes blinking
+  0%
+    opacity: 0
+  50%
+    opacity: 1
+  100%
+    opacity: 0
+

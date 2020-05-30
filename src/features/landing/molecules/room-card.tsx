@@ -1,6 +1,8 @@
 import React from 'react'
-import Card from 'react-bootstrap/Card'
-import Button from "react-bootstrap/Button";
+import './room-card.sass'
+import {iterationFromNumber} from "lib/internal/tools";
+import {PlayerSign} from '../atoms';
+import {ClickIdEntity} from "lib/internal/types";
 
 interface IProps {
     image?: any;
@@ -8,18 +10,23 @@ interface IProps {
     description?: string
     maxPlayers: number
     currentPlayers: number
-    onClick: VoidFunction
+    onClick: ClickIdEntity
+    className?: string
+    id: string
 }
 
-export const RoomCard = React.memo(({}: IProps) => {
-    return <Card>
-        <Card.Body>
-            <Card.Title>Trip name</Card.Title>
-            <Card.Text>
-                Some quick example text to build on the card title and make up the bulk of
-                the card's content.
-            </Card.Text>
-            <Button variant="primary">Go to boat</Button>
-        </Card.Body>
-    </Card>
+export const RoomCard = React.memo(({title, description, image, id, maxPlayers, currentPlayers, className, onClick}: IProps) => {
+
+    const handleClick = () => onClick(id)
+
+    const PlayersRows = iterationFromNumber(maxPlayers)
+        .map(i => <PlayerSign isRegister={i < currentPlayers - 1} key={i}/>)
+
+    return <div className={['room-card', className].join(' ')} onClick={handleClick}>
+        <div className="title">{title}</div>
+        <div className="body">
+            <div className="description">{description}</div>
+            <div className="players">{PlayersRows}</div>
+        </div>
+    </div>
 })
