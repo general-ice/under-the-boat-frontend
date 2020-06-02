@@ -19,9 +19,10 @@ const FakeRooms: IGameRoom[] = [
     }
 ]
 
-export const getRooms = () => {
-    console.log('get fake rooms request')
-    return Promise.resolve(EitherRight(FakeRooms).value)
-}
+// export const getRooms = () => {
+//     console.log('get fake rooms request')
+//     return Promise.resolve(EitherRight(FakeRooms).value)
+// }
 
-// export const getRooms = () => simpleRequest('games/get-all')
+export const getRooms = () => simpleRequest('games/get-all')
+    .then(res => res.value)
